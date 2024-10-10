@@ -72,8 +72,13 @@ def FKHW3(q):
     P[:,3] = [p4_14, p4_24, p4_34]
     R_e = R[:,:,3]
     p_e = P[:,3]
-
     return R,P,R_e,p_e
 
+R,P,R_e,p_e = FKHW3([0,0,0])
+
+print ("R = \n",R)
+print ("P = \n",P)
+print ("R_e = \n",R_e)
+print ("P_e = \n",p_e)
 
 
