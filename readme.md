@@ -24,7 +24,7 @@ J =
 \begin{bmatrix}
 J_v \\
 J_w
-\end{bmatrix}_{6 \times n}
+\end{bmatrix}_{6 \cdot n}
 $$
 
 
@@ -45,20 +45,20 @@ J =
 \begin{bmatrix}
 0 \\ 0 \\ 1
 \end{bmatrix}
-\times (d_3^0) &
+\cdot (d_3^0) &
 
 
 R_1^0 
 \begin{bmatrix}
 0 \\ 0 \\ 1
 \end{bmatrix}
-\times (d_3^0 - d_1^0)  &
+\cdot (d_3^0 - d_1^0)  &
 
 R_2^0 
 \begin{bmatrix}
 0 \\ 0 \\ 1
 \end{bmatrix}
-\times (d_3^0 - d_2^0) \\
+\cdot (d_3^0 - d_2^0) \\
 
 
 \begin{bmatrix}
