@@ -30,13 +30,13 @@ git clone https://github.com/SUNTADTAWAN/FRA333_HW3_6520_6531.git
 
 ## Run
 
-### run FRA333_HW3_6520_6531
+### Run FRA333_HW3_6520_6531
 ```sh
-py .\FRA333_HW3_6520_6531.py
+python3 .\FRA333_HW3_6520_6531.py
 ```
-### run test script
+### Run test script
 ```sh
-py .\testScript.py
+python3 .\testScript.py
 ```
 
 
