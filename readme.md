@@ -2,7 +2,27 @@
 
 ## Setup & Installation
 
+### Install pyhton
+```sh
+sudo apt install python3
+```
+### Install numpy (v.1.23.5)
+```sh
+pip3 install numpy
+```
+### Install Robotics Toolbox
+```sh
+pip3 install roboticstoolbox-python
+```
 
+
+Adjusting q value and w in testScripts.py
+
+```bash
+q_initial = [0, 0, 0]
+q_singulality = [0, -pi/2, -0.1]
+w = np.array([0, 5, 0, 10, 0, 5])
+```
 
 ## How it work
 
@@ -225,7 +245,7 @@ def check_singularity(q: list[float]):
 
 ### Question 3
 ```bash
-ef check_effort(q: list[float],w: list[float]):
+def check_effort(q: list[float],w: list[float]):
     # Effort from our by J_transpose * w
     tau_our = computeEffortHW3(q,w)
     

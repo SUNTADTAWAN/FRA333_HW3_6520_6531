@@ -21,7 +21,7 @@ a_3 = 0.39243
 d_4 = 0.109
 d_5 = 0.093
 d_6 = 0.082
-q_initial = [0, 0, 0]
+q_initial = [0, -pi/2, pi/2]
 q_singulality = [0, -pi/2, -0.1]
 w = np.array([0, 5, 0, 10, 0, 5])
 
@@ -114,10 +114,10 @@ def check_effort(q: list[float],w: list[float]):
 print(robot)
 
 jacob_checker = check_jacobian(q_initial)
-sing_checker = check_singularity(q_singulality)
-effort_checker = check_effort(q_initial,w)
-print("========================================================================================================= \n")
+# sing_checker = check_singularity(q_singulality)
+# effort_checker = check_effort(q_initial,w)
+# print("========================================================================================================= \n")
 
 
-print(f"Output Jacobian : \n {jacob_checker} , \n Singularity : {sing_checker} , \n Effort : {effort_checker}")
+# print(f"Output Jacobian : \n {jacob_checker} , \n Singularity : {sing_checker} , \n Effort : {effort_checker}")
 
