@@ -15,6 +15,19 @@ pip3 install numpy
 pip3 install roboticstoolbox-python
 ```
 
+### Make directory
+```sh
+mkdir [your_name_workspace]
+```
+### Navigate to workspace
+```sh 
+cd [your_name_workspace]
+```
+### Clone workspace
+```sh
+git clone https://github.com/SUNTADTAWAN/FRA333_HW3_6520_6531.git
+```
+
 
 Adjusting q value and w in testScripts.py
 
