@@ -14,46 +14,61 @@ import numpy as np
 #code here
 def endEffectorJacobianHW3(q: list[float]) -> np.ndarray:
 
-    R, P, R_e, p_e = FKHW3(q) # Forward_kinematics 
+    # Assign variable from Forward kinematics
+    R, P, R_e, p_e = FKHW3(q) 
 
-    J_e = np.zeros((6, 3)) # Jacobian 
+    # Assign position and rotation matrix
+    p_01 = P[:,0]
+    p_02 = P[:,1]
+    p_03 = P[:,2]
+    p_0e = p_e
+    
+    R_01 = R[:,:,0]
+    R_02 = R[:,:,1]
+    R_03 = R[:,:,2]
+    R_0e = R_e
+    
+    # Crate array vector [0,0,1] Rotation around Z axix
+    z = np.array([0.0, 0.0, 1.0]).reshape(3,1)
+    
+    # Create rotation axis frame
+    z_01 = R_01 @ z
+    z_02 = R_02 @ z
+    z_03 = R_03 @ z
+    # z_0e = R_0e @ z
+    
+    # Compute linear velocity Jacobian components
+    Jv_1 = np.cross(z_01.T, (p_0e - p_01).T).T
+    Jv_2 = np.cross(z_02.T, (p_0e - p_02).T).T
+    Jv_3 = np.cross(z_03.T, (p_0e - p_03).T).T
 
-    p_i = P[:, 0] # Position of Joint 0 from base frame
-    z_i = R[:, 2, 0] # Z position of frame 0
-    delta_position = p_e - p_i # find diff position of frame0 to end_effector
-    J_e[:3, 0] = np.cross(z_i, delta_position) # cross z_i x delta_position (Jv)
-    Jw = z_i # Rotation Jacobian
-    J_e[3:, 0] =  Jw # Rotation velocity
-
-    p_i = P[:, 1] # Position of Joint 1 from base frame
-    z_i = R[:, 2, 1] # Z position of frame 1
-    delta_position = p_e - p_i # find diff position of frame1 to end_effector
-    J_e[:3, 1] = np.cross(z_i, delta_position) # cross z_i x delta_position (Jv)
-    Jw = z_i # Rotation Jacobian
-    J_e[3:, 1] = Jw # Rotation velocity
-
-    p_i = P[:, 2] # Position of Joint 2 from base frame
-    z_i = R[:, 2, 2] # Z position of frame 2
-    delta_position = p_e - p_i # find diff position of frame2 to end_effector
-    J_e[:3, 2] = np.cross(z_i, delta_position) # cross z_i x delta_position (Jv)
-    Jw = z_i # Rotation Jacobian
-    J_e[3:, 2] = Jw # Rotation velocity
-
-    J_e_translational = np.dot(R_e.T, J_e[:3, :]) # Translation
-    J_e_rotational = np.dot(R_e.T, J_e[3:, :]) # Rotation
-    J_e = np.vstack((J_e_translational, J_e_rotational)) 
-    return J_e
+    # Combine linear velocity components into J_v 
+    J_v = np.hstack([Jv_1, Jv_2, Jv_3])
+    
+    # The angular velocity Jacobian components in J_w
+    J_w = np.hstack([z_01, z_02, z_03])
+    
+    # Construct full Jacobian Matrix with Linear and Angular velocity
+    J = np.vstack([J_v, J_w])
+    
+    return J
+    
+    
 #==============================================================================================================#
 #=============================================<คำตอบข้อ 2>======================================================#
 #code here
 def checkSingularityHW3(q:list[float])->bool:
+    # Find Jacobian matrix
     J_e = endEffectorJacobianHW3(q)
     
+    # Only linear velocity effect to singularity
     J_e_reduced = J_e[:3, :3] 
     
+    # Find Determinant 
     det_J_e = np.linalg.det(J_e_reduced)
-    
-    if (abs(det_J_e) < 0.01):
+
+    # Check Singularity with threshold 0.01
+    if (abs(det_J_e) < 0.001):
         return 1 
     else:
         return 0 
@@ -62,11 +77,23 @@ def checkSingularityHW3(q:list[float])->bool:
 #=============================================<คำตอบข้อ 3>======================================================#
 #code here
 def computeEffortHW3(q:list[float], w:list[float])->list[float]:
+    """
+    Use -J_3*w because the joint torques represent reaction forces opposing 
+    the applied wrench on the end-effector, following Newton's third law.
+
+    """
+    
+    # Find Jacobian Matrix
     J_e = endEffectorJacobianHW3(q)
     
-    J_e_Transpose = J_e.T # Transpose Jacobian
+    # Transpose Jacobian
+    J_e_Transpose = J_e.T 
 
-    tau = np.dot(J_e_Transpose, w) 
+    # Find Effort from tau = J_e_transpose * w
+    tau = np.dot(-J_e_Transpose, w) 
     
     return tau
 #==============================================================================================================#
+
+# q = [0.0, 0.0 , 0.0]
+# print(endEffectorJacobianHW3(q))
