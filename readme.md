@@ -94,9 +94,8 @@ def endEffectorJacobianHW3(q: list[float]) -> np.ndarray:
 
 The condition for the determinant of the Jacobian matrix is:
 
-$$
-\| \det(J^*(q)) \| < \epsilon
-$$
+![alt text](image-10.png)
+
 
 Find Singularity from find determinant of reduce jacobian matrix that < threshold (0.0001), return 0 if it not in singularity and 1 if near singularity
 
