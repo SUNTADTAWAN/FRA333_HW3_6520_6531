@@ -34,46 +34,9 @@ $$
 
 The Jacobian matrix \(J\) is expressed as:
 
-$$
-J = 
-\begin{bmatrix}
-\mathbf{J_v} \\
-\mathbf{J_w}
-\end{bmatrix}
-=
-\begin{bmatrix}
-\begin{bmatrix}
-0 \\ 0 \\ 1
-\end{bmatrix}
-\cdot (d_3^0) &
+![alt text](image.png)
 
 
-R_1^0 
-\begin{bmatrix}
-0 \\ 0 \\ 1
-\end{bmatrix}
-\cdot (d_3^0 - d_1^0)  &
-
-R_2^0 
-\begin{bmatrix}
-0 \\ 0 \\ 1
-\end{bmatrix}
-\cdot (d_3^0 - d_2^0) \\
-
-
-\begin{bmatrix}
-0 \\ 0 \\ 1
-\end{bmatrix} &
-R_1^0 
-\begin{bmatrix}
-0 \\ 0 \\ 1
-\end{bmatrix} &
-R_2^0 
-\begin{bmatrix}
-0 \\ 0 \\ 1
-\end{bmatrix}
-\end{bmatrix}
-$$
 
 
 
