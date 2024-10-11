@@ -28,6 +28,17 @@ cd [your_name_workspace]
 git clone https://github.com/SUNTADTAWAN/FRA333_HW3_6520_6531.git
 ```
 
+## Run
+
+### run FRA333_HW3_6520_6531
+```sh
+py .\FRA333_HW3_6520_6531.py
+```
+### run test script
+```sh
+py .\testScript.py
+```
+
 
 Adjusting q value and w in testScripts.py
 
