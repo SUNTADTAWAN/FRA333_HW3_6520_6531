@@ -74,11 +74,11 @@ def FKHW3(q):
     p_e = P[:,3]
     return R,P,R_e,p_e
 
-R,P,R_e,p_e = FKHW3([0,0,0])
+# R,P,R_e,p_e = FKHW3([0,0,0])
 
-print ("R = \n",R)
-print ("P = \n",P)
-print ("R_e = \n",R_e)
-print ("P_e = \n",p_e)
+# print ("R = \n",R)
+# print ("P = \n",P)
+# print ("R_e = \n",R_e)
+# print ("P_e = \n",p_e)
 
 
