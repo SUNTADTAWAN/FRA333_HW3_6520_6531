@@ -36,7 +36,7 @@ python3 .\testScript.py
 ```
 
 
-Adjusting q value and w in testScripts.py
+### Adjusting q value and w in testScripts.py
 
 ```sh
 q_initial = [0, 0, 0]
