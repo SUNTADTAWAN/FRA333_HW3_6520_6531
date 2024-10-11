@@ -95,5 +95,4 @@ def computeEffortHW3(q:list[float], w:list[float])->list[float]:
     return tau
 #==============================================================================================================#
 
-# q = [0.0, 0.0 , 0.0]
-# print(endEffectorJacobianHW3(q))
+

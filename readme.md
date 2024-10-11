@@ -2,13 +2,9 @@
 
 ## Setup & Installation
 
-### Install pyhton
-```sh
-sudo apt install python3
-```
 ### Install numpy (v.1.23.5)
 ```sh
-pip3 install numpy
+pip3 install numpy==1.23.5
 ```
 ### Install Robotics Toolbox
 ```sh
@@ -28,13 +24,13 @@ cd [your_name_workspace]
 git clone https://github.com/SUNTADTAWAN/FRA333_HW3_6520_6531.git
 ```
 
-## Run
+## Usage
 
-### Run FRA333_HW3_6520_6531
+### Run FRA333_HW3_6520_6531.py (Function file doesn't return anything)
 ```sh
 python3 .\FRA333_HW3_6520_6531.py
 ```
-### Run test script
+### Run testScript,py (Display Output from question 1 - 3)
 ```sh
 python3 .\testScript.py
 ```
@@ -42,13 +38,13 @@ python3 .\testScript.py
 
 Adjusting q value and w in testScripts.py
 
-```bash
+```sh
 q_initial = [0, 0, 0]
 q_singulality = [0, -pi/2, -0.1]
 w = np.array([0, 5, 0, 10, 0, 5])
 ```
 
-## How it work
+## How it work ?
 
 ### Robot Setup
 
@@ -58,6 +54,7 @@ Convert robot configuration into MDH for check answer with robotics-toolbox
 
 ![alt text](image-4.png)
 
+Note : HW3_utils.py has function FKHW3(q) that you can input parameter "q" and compute forward kinematics to use in this project
 
 ### Question 1
 
@@ -166,9 +163,8 @@ def checkSingularityHW3(q:list[float])->bool:
 
 The torque equation is given by:
 
-$$
-\tau = J^T \cdot w
-$$
+![alt text](image-14.png)
+
 τ : the vector of joint torques/efforts.
 
 J_T  : the transpose of the Jacobian matrix.
@@ -201,6 +197,8 @@ def computeEffortHW3(q:list[float], w:list[float])->list[float]:
 
 ### Question 1
 
+Use "jacob0" from robotics toolsbox that can compute jacobian matrix reference from base frame and compare with our solution to see difference
+
 ```bash
 def check_jacobian(q: list[float]):
     # Assign Jacobian matrix from our Jacobian compute and "jacob0" from robotics toolsbox
@@ -230,11 +228,14 @@ def check_jacobian(q: list[float]):
 
     Difference of our and toolsbox : difference Jacobian matrix from 2 method
 
-### Output
+### Output question#1
 ![alt text](image-5.png)
 
 
 ### Question 2
+
+Find Singularity from using Jacobian from 2 source our jacobian and robotics-toolsbox and compute determinant and make condition to check if it < 0.0001,so , its mean near to singularity 
+
 ```bash
 def check_singularity(q: list[float]):
     # Assign Singularity check output from our function
@@ -262,12 +263,15 @@ def check_singularity(q: list[float]):
     Input q : q that we need to know the jacobian
     flag : return "Singularity" or "Not Singularity" 
 
-### Output
+### Output question#2
 
 ![alt text](image-13.png)
 
 
 ### Question 3
+
+Using Function "pay" from robotics toolsbox to find Torque that can compute when input is (w, J, frame) and our function computeEffortHW3(q,w) and compare 2 of this output to find difference
+
 ```bash
 def check_effort(q: list[float],w: list[float]):
     # Effort from our by J_transpose * w
@@ -297,6 +301,6 @@ def check_effort(q: list[float],w: list[float]):
     Robotics toolsbox Effort : Torque compute from robotics-toolsbox
     Difference of our and toolsbox : difference value from this 2 method
     
-### Output
+### Output question#3
 
 ![alt text](image-7.png)
